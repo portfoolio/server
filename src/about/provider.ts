@@ -5,7 +5,7 @@ import { AboutSchema } from 'src/about/schema';
 
 export const aboutProvider = [
   {
-    provide: types.HEADER_MODEL,
+    provide: types.ABOUT_MODEL,
     useFactory: () => mongoose.model('About', AboutSchema, 'about'),
     inject: [coreTypes.CONNECTION],
   },
