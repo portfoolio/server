@@ -1,3 +1,3 @@
 export const types = {
-  HEADER_MODEL: 'HEADER_MODEL',
+  ABOUT_MODEL: 'ABOUT_MODEL',
 };

@@ -7,7 +7,7 @@ import { aboutSchema } from 'src/about/schema';
 
 @Injectable()
 export class AboutService implements CrudInterface {
-  constructor(@Inject(types.HEADER_MODEL) private readonly aboutModel: mongoose.Model<AboutInterface>) {}
+  constructor(@Inject(types.ABOUT_MODEL) private readonly aboutModel: mongoose.Model<AboutInterface>) {}
 
   async create(data) {
     return (new this.aboutModel(data)).save();
