@@ -15,6 +15,8 @@ import { swagger } from 'src/core/swagger';
 import { AdminModule } from 'src/admin/module';
 import { SecurityModule } from 'src/security/module';
 import { AboutModule } from 'src/about/module';
+import { ServiceModule } from 'src/service/module';
+import { ContactModule } from 'src/contact/module';
 
 @Module({
   imports: [
@@ -24,6 +26,8 @@ import { AboutModule } from 'src/about/module';
     SecurityModule,
     HeaderModule,
     AboutModule,
+    ServiceModule,
+    ContactModule,
   ],
   providers: [
     ...mongoConnectionProvider
