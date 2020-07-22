@@ -14,8 +14,8 @@ import { HeaderInterface } from 'src/header/interface';
 import { HeaderDTO } from 'src/header/dto';
 import { HeaderService } from 'src/header/service';
 
-@ApiTags('header')
 @ApiBearerAuth()
+@ApiTags('header')
 @Controller('header')
 export class HeaderController {
   constructor(private readonly service: HeaderService) {}

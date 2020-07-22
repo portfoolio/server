@@ -12,11 +12,15 @@ import { ConfigModule } from './core/config/module';
 import { MulterModule } from './core/multer/module';
 import { HeaderModule } from 'src/header/module';
 import { swagger } from 'src/core/swagger';
+import { AdminModule } from 'src/admin/module';
+import { SecurityModule } from 'src/security/module';
 
 @Module({
   imports: [
     ConfigModule,
     MulterModule,
+    AdminModule,
+    SecurityModule,
     HeaderModule,
   ],
   providers: [
