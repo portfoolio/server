@@ -9,4 +9,7 @@ export class ServiceDTO {
 
   @ApiProperty()
   readonly description!: string;
+
+  @ApiProperty()
+  readonly icon!: string;
 }
