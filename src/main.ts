@@ -14,6 +14,7 @@ import { HeaderModule } from 'src/header/module';
 import { swagger } from 'src/core/swagger';
 import { AdminModule } from 'src/admin/module';
 import { SecurityModule } from 'src/security/module';
+import { AboutModule } from 'src/about/module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { SecurityModule } from 'src/security/module';
     AdminModule,
     SecurityModule,
     HeaderModule,
+    AboutModule,
   ],
   providers: [
     ...mongoConnectionProvider
@@ -37,6 +39,8 @@ async function bootstrap() {
   app.use(bodyParser.json());
 
   swagger(app);
+
+  app.enableCors();
 
   await app.listen(3001);
 }
