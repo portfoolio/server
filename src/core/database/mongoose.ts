@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
-import { types } from './types';
-import { ConfigService } from './config/service';
+import { types } from 'src/core/types';
+import { ConfigService } from 'src/core/config/service';
 
 export const mongoConnectionProvider = [
   {

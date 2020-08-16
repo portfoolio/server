@@ -4,14 +4,14 @@ import { ApiTags } from '@nestjs/swagger';
 import { LoginDTO } from 'src/security/dto';
 import { AuthService } from 'src/security/service';
 
-@ApiTags('auth')
+@ApiTags('security')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @UseGuards(AuthGuard('local'))
   @Post('login')
-  public async login(@Body() loginDTO: LoginDTO, @Response() res) {
+  async login(@Body() loginDTO: LoginDTO, @Response() res) {
     try {
       const response = await this.authService.login(loginDTO.email);
       res.status(HttpStatus.OK).json(response);

@@ -14,5 +14,8 @@ export class HeaderDTO {
   readonly description?: string;
 
   @ApiProperty()
+  readonly image!: string;
+
+  @ApiProperty()
   readonly links?: object;
 }

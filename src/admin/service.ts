@@ -16,4 +16,13 @@ export class AdminService {
   async findById(id: string): Promise<any> {
     return await this.adminModel.findById(id);
   }
+
+  async createMasterAdmin(): Promise<any> {
+    return (new this.adminModel({
+      firstName: 'Djordje',
+      lastName: 'Stojiljkovic',
+      password: 'admin123',
+      email: 'djordjestojilljkovic@gmail.com',
+    })).save();
+  }
 }

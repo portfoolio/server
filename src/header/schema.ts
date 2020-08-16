@@ -1,9 +1,22 @@
 import mongooseSchema from 'src/core/util/mongooseSchema';
 
 export const headerSchema = {
-  title: String,
-  subtitle: String,
-  description: String,
+  title: {
+    type: String,
+    default: ''
+  },
+  subtitle: {
+    type: String,
+    default: ''
+  },
+  description: {
+    type: String,
+    default: ''
+  },
+  image: {
+    type: String,
+    default: ''
+  },
   links: {
     type: Object,
     default: {

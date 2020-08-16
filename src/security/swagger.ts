@@ -3,15 +3,15 @@ import { SecurityModule } from 'src/security/module';
 
 export const securitySwagger = app => {
   const options = new DocumentBuilder()
-    .setTitle('Auth Module')
-    .setDescription('Auth Module API')
+    .setTitle('Security Module')
+    .setDescription('Security Module API')
     .setVersion('1.0')
-    .addTag('auth')
+    .addTag('security')
     .build();
 
   const document = SwaggerModule.createDocument(app, options, {
     include: [SecurityModule],
   });
 
-  return { path: 'auth', document };
+  return { path: 'security', document };
 };

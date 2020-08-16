@@ -1,18 +1,16 @@
 import {
   Controller,
-  Post,
   Body,
   Get,
-  Param,
   Put,
-  Delete,
-  UseGuards,
+  UseGuards, UseInterceptors, UploadedFile,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { HeaderInterface } from 'src/header/interface';
 import { HeaderDTO } from 'src/header/dto';
 import { HeaderService } from 'src/header/service';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiBearerAuth()
 @ApiTags('header')
@@ -20,33 +18,17 @@ import { HeaderService } from 'src/header/service';
 export class HeaderController {
   constructor(private readonly service: HeaderService) {}
 
-  @Post()
+  @Get()
   @UseGuards(AuthGuard('admin'))
-  async create(@Body() headerDTO: HeaderDTO): Promise<HeaderDTO> {
-    return await this.service.create(headerDTO);
-  }
-
-  @Get(':id')
-  @UseGuards(AuthGuard('admin'))
-  async find(@Param('id') id: string): Promise<HeaderInterface> {
-    return await this.service.find(id);
+  async find(): Promise<HeaderInterface> {
+    return await this.service.find();
   }
 
   @Put()
   @UseGuards(AuthGuard('admin'))
-  async update(@Body() headerDTO: HeaderDTO): Promise<HeaderDTO> {
-    return await this.service.update(headerDTO);
-  }
-
-  @Delete(':id')
-  @UseGuards(AuthGuard('admin'))
-  async delete(@Param('id') id: string): Promise<boolean> {
-    return await this.service.delete(id);
-  }
-
-  @Get()
-  @UseGuards(AuthGuard('admin'))
-  async list() {
-    return await this.service.list();
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(FileInterceptor('image'))
+  async update(@Body() headerDTO: HeaderDTO, @UploadedFile() image): Promise<HeaderDTO> {
+    return await this.service.update(headerDTO, image);
   }
 }
