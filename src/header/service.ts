@@ -28,7 +28,6 @@ export class HeaderService {
 
     if (image) {
       header.image = await this.s3Service.upload(image);
-      console.log(header.image);
     }
 
     return header.save();

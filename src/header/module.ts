@@ -3,7 +3,6 @@ import { HeaderController } from 'src/header/controller';
 import { HeaderService } from 'src/header/service';
 import { S3Service } from 'src/core/aws/service';
 import { headerProvider } from 'src/header/provider';
-import { mongoConnectionProvider } from 'src/core/database/mongoose';
 
 @Module({
   controllers: [HeaderController],
@@ -11,7 +10,6 @@ import { mongoConnectionProvider } from 'src/core/database/mongoose';
     HeaderService,
     S3Service,
     ...headerProvider,
-    ...mongoConnectionProvider,
   ],
 })
 
