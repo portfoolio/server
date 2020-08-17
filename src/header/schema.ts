@@ -23,7 +23,8 @@ export const headerSchema = {
       facebook: '',
       twitter: '',
       instagram: '',
-      linkedIn: ''
+      linkedIn: '',
+      github: '',
     }
   }
 };

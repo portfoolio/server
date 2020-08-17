@@ -18,6 +18,7 @@ import { ServiceModule } from 'src/service/module';
 import { ContactModule } from 'src/contact/module';
 import { DatabaseModule } from 'src/core/database/module';
 import { AWSModule } from 'src/core/aws/module';
+import { CounterModule } from 'src/counter/module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { AWSModule } from 'src/core/aws/module';
     AboutModule,
     ServiceModule,
     ContactModule,
+    CounterModule,
   ]
 })
 

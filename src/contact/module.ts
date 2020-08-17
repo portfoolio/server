@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ContactController } from 'src/contact/controller';
 import { contactProvider } from 'src/contact/provider';
-import { mongoConnectionProvider } from 'src/core/database/mongoose';
 import { ContactService } from 'src/contact/service';
 
 @Module({
@@ -9,7 +8,6 @@ import { ContactService } from 'src/contact/service';
   providers: [
     ContactService,
     ...contactProvider,
-    ...mongoConnectionProvider
   ],
 })
 

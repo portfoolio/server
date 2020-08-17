@@ -5,6 +5,7 @@ import { securitySwagger } from 'src/security/swagger';
 import { aboutSwagger } from 'src/about/swagger';
 import { serviceSwagger } from 'src/service/swagger';
 import { contactSwagger } from 'src/contact/swagger';
+import { counterSwagger } from 'src/counter/swagger';
 
 export const swagger = (app: NestExpressApplication): void => {
   [
@@ -13,5 +14,6 @@ export const swagger = (app: NestExpressApplication): void => {
     aboutSwagger(app),
     serviceSwagger(app),
     contactSwagger(app),
+    counterSwagger(app),
   ].map(({ path, document }) => SwaggerModule.setup(`swagger/${path}`, app, document));
 };
