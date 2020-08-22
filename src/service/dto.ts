@@ -13,3 +13,14 @@ export class ServiceDTO {
   @ApiProperty()
   readonly icon!: string;
 }
+
+export class ServiceHeaderDTO {
+  @ApiProperty()
+  readonly id!: string;
+
+  @ApiProperty()
+  readonly title!: string;
+
+  @ApiProperty()
+  readonly description!: string;
+}

@@ -1,3 +1,4 @@
 export const types = {
   SERVICE_MODEL: 'SERVICE_MODEL',
+  SERVICE_HEADER_MODEL: 'SERVICE_HEADER_MODEL',
 };

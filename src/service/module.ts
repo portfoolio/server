@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { ServiceController } from 'src/service/controller';
+import { ServiceController, ServiceHeaderController } from 'src/service/controller';
 import { ServiceService } from 'src/service/service';
 import { serviceProvider } from 'src/service/provider';
 
 @Module({
-  controllers: [ServiceController],
+  controllers: [ServiceController, ServiceHeaderController],
   providers: [
     ServiceService,
     ...serviceProvider,

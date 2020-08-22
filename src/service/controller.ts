@@ -11,7 +11,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { ServiceInterface } from 'src/service/interface';
-import { ServiceDTO } from 'src/service/dto';
+import { ServiceDTO, ServiceHeaderDTO } from 'src/service/dto';
 import { ServiceService } from 'src/service/service';
 
 @ApiBearerAuth()
@@ -48,5 +48,24 @@ export class ServiceController {
   @UseGuards(AuthGuard('admin'))
   async list() {
     return await this.service.list();
+  }
+}
+
+@ApiBearerAuth()
+@ApiTags('service')
+@Controller('service-header')
+export class ServiceHeaderController {
+  constructor(private readonly service: ServiceService) {}
+
+  @Get()
+  @UseGuards(AuthGuard('admin'))
+  async find(): Promise<ServiceInterface> {
+    return await this.service.findHeader();
+  }
+
+  @Put()
+  @UseGuards(AuthGuard('admin'))
+  async update(@Body() serviceHeaderDTO: ServiceHeaderDTO): Promise<ServiceHeaderDTO> {
+    return await this.service.updateHeader(serviceHeaderDTO);
   }
 }

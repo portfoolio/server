@@ -7,3 +7,16 @@ export const serviceSchema = {
 };
 
 export const ServiceSchema = mongooseSchema(serviceSchema);
+
+export const serviceHeaderSchema = {
+  title: {
+    type: String,
+    default: 'My Service',
+  },
+  description: {
+    type: String,
+    default: '',
+  },
+};
+
+export const ServiceHeaderSchema = mongooseSchema(serviceHeaderSchema);
