@@ -4,8 +4,6 @@ import { CrudInterface } from 'src/core/crud.interface';
 import { types } from 'src/service/types';
 import { ServiceHeaderInterface, ServiceInterface } from 'src/service/interface';
 import { serviceHeaderSchema, serviceSchema } from 'src/service/schema';
-import { FILE } from 'src/core/aws/service';
-import { headerSchema } from 'src/header/schema';
 
 @Injectable()
 export class ServiceService implements CrudInterface {
@@ -20,7 +18,7 @@ export class ServiceService implements CrudInterface {
 
   async update(data) {
     let service = await this.serviceModel.findById(data.id);
-    for (let k in Object.keys(serviceSchema)) {
+    for (let k of Object.keys(serviceSchema)) {
       service[k] = data[k];
     }
 

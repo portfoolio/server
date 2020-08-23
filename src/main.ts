@@ -19,6 +19,8 @@ import { ContactModule } from 'src/contact/module';
 import { DatabaseModule } from 'src/core/database/module';
 import { AWSModule } from 'src/core/aws/module';
 import { CounterModule } from 'src/counter/module';
+import { JourneyModule } from 'src/journey/module';
+import { ProjectModule } from 'src/project/module';
 
 @Module({
   imports: [
@@ -33,6 +35,8 @@ import { CounterModule } from 'src/counter/module';
     ServiceModule,
     ContactModule,
     CounterModule,
+    JourneyModule,
+    ProjectModule,
   ]
 })
 
