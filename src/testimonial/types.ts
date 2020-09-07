@@ -1,0 +1,4 @@
+export const types = {
+  PROJECT_MODEL: 'PROJECT_MODEL',
+  PROJECT_HEADER_MODEL: 'PROJECT_HEADER_MODEL',
+};
