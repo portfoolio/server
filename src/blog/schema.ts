@@ -1,17 +1,27 @@
 import mongooseSchema from 'src/core/util/mongooseSchema';
 
-export const testimonialSchema = {
-  comment: String,
-  author: String,
-};
-
-export const TestimonialSchema = mongooseSchema(testimonialSchema);
-
-export const testimonialHeaderSchema = {
+export const blogSchema = {
   title: {
     type: String,
-    default: 'Others About Me',
+    default: '',
+  },
+  description: String,
+  thumbnail: String,
+  image: String,
+  content: String,
+};
+
+export const BlogSchema = mongooseSchema(blogSchema);
+
+export const blogHeaderSchema = {
+  title: {
+    type: String,
+    default: 'Blog',
+  },
+  description: {
+    type: String,
+    default: 'Latest blog posts',
   },
 };
 
-export const TestimonialHeaderSchema = mongooseSchema(testimonialHeaderSchema);
+export const BlogHeaderSchema = mongooseSchema(blogHeaderSchema);

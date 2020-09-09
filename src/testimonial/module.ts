@@ -1,16 +1,14 @@
 import { Module } from '@nestjs/common';
-import { ProjectController, ProjectHeaderController } from 'src/project/controller';
-import { projectProvider } from 'src/project/provider';
-import { ProjectService } from 'src/project/service';
-import { S3Service } from 'src/core/aws/service';
+import { TestimonialController, TestimonialHeaderController } from 'src/testimonial/controller';
+import { testimonialProvider } from 'src/testimonial/provider';
+import { TestimonialService } from 'src/testimonial/service';
 
 @Module({
-  controllers: [ProjectController, ProjectHeaderController],
+  controllers: [TestimonialController, TestimonialHeaderController],
   providers: [
-    ProjectService,
-    ...projectProvider,
-    S3Service,
+    TestimonialService,
+    ...testimonialProvider,
   ],
 })
 
-export class ProjectModule {}
+export class TestimonialModule {}

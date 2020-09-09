@@ -1,12 +1,10 @@
 import { Document } from 'mongoose';
 
-export interface ProjectInterface extends Document {
-  readonly title: string,
-  readonly subtitle: string,
-  readonly image: string,
+export interface TestimonialInterface extends Document {
+  readonly comment: string,
+  readonly author: string,
 }
 
-export interface ProjectHeaderInterface extends Document {
+export interface TestimonialHeaderInterface extends Document {
   readonly title: string;
-  readonly description: string;
 }

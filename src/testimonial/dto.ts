@@ -1,26 +1,20 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class ProjectDTO {
+export class TestimonialDTO {
   @ApiProperty()
   readonly id!: string;
 
   @ApiProperty()
-  readonly title!: string;
+  readonly comment!: string;
 
   @ApiProperty()
-  readonly subtitle!: string;
-
-  @ApiProperty()
-  readonly image!: string;
+  readonly author!: string;
 }
 
-export class ProjectHeaderDTO {
+export class TestimonialHeaderDTO {
   @ApiProperty()
   readonly id!: string;
 
   @ApiProperty()
   readonly title!: string;
-
-  @ApiProperty()
-  readonly description!: string;
 }

@@ -1,17 +1,20 @@
 import mongooseSchema from 'src/core/util/mongooseSchema';
 
-export const technologieSchema = {
-  comment: String,
-  author: String,
+export const technologySchema = {
+  image: String,
 };
 
-export const TechnologySchema = mongooseSchema(technologieSchema);
+export const TechnologySchema = mongooseSchema(technologySchema);
 
-export const technologieHeaderSchema = {
+export const technologyHeaderSchema = {
   title: {
     type: String,
-    default: 'Others About Me',
+    default: 'Technology',
+  },
+  description: {
+    type: String,
+    default: 'Technology',
   },
 };
 
-export const TechnologyHeaderSchema = mongooseSchema(technologieHeaderSchema);
+export const TechnologyHeaderSchema = mongooseSchema(technologyHeaderSchema);

@@ -8,6 +8,9 @@ import { contactSwagger } from 'src/contact/swagger';
 import { counterSwagger } from 'src/counter/swagger';
 import { journeySwagger } from 'src/journey/swagger';
 import { projectSwagger } from 'src/project/swagger';
+import { testimonialSwagger } from 'src/testimonial/swagger';
+import { technologySwagger } from 'src/technology/swagger';
+import { blogSwagger } from 'src/blog/swagger';
 
 export const swagger = (app: NestExpressApplication): void => {
   [
@@ -19,5 +22,8 @@ export const swagger = (app: NestExpressApplication): void => {
     counterSwagger(app),
     journeySwagger(app),
     projectSwagger(app),
+    testimonialSwagger(app),
+    technologySwagger(app),
+    blogSwagger(app),
   ].map(({ path, document }) => SwaggerModule.setup(`swagger/${path}`, app, document));
 };

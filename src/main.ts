@@ -21,6 +21,10 @@ import { AWSModule } from 'src/core/aws/module';
 import { CounterModule } from 'src/counter/module';
 import { JourneyModule } from 'src/journey/module';
 import { ProjectModule } from 'src/project/module';
+import { TestimonialModule } from 'src/testimonial/module';
+import { TechnologyModule } from 'src/technology/module';
+import { BlogModule } from 'src/blog/module';
+import { SettingModule } from 'src/setting/module';
 
 @Module({
   imports: [
@@ -37,6 +41,10 @@ import { ProjectModule } from 'src/project/module';
     CounterModule,
     JourneyModule,
     ProjectModule,
+    TestimonialModule,
+    TechnologyModule,
+    BlogModule,
+    SettingModule,
   ]
 })
 

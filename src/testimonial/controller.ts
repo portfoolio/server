@@ -6,42 +6,37 @@ import {
   Param,
   Put,
   Delete,
-  UseGuards, UseInterceptors, UploadedFile,
+  UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-import { ProjectInterface } from 'src/project/interface';
-import { ProjectDTO, ProjectHeaderDTO } from 'src/project/dto';
-import { ProjectService } from 'src/project/service';
+import { TestimonialInterface } from 'src/testimonial/interface';
+import { TestimonialDTO, TestimonialHeaderDTO } from 'src/testimonial/dto';
+import { TestimonialService } from 'src/testimonial/service';
 
 @ApiBearerAuth()
-@ApiTags('project')
-@Controller('project')
-export class ProjectController {
-  constructor(private readonly service: ProjectService) {}
+@ApiTags('testimonial')
+@Controller('testimonial')
+export class TestimonialController {
+  constructor(private readonly service: TestimonialService) {}
 
   @Post()
   @UseGuards(AuthGuard('admin'))
-  @ApiConsumes('multipart/form-data')
-  @UseInterceptors(FileInterceptor('image'))
-  async create(@Body() projectDTO: ProjectDTO, @UploadedFile() image): Promise<ProjectDTO> {
-    return await this.service.create(projectDTO, image);
+  async create(@Body() testimonialDTO: TestimonialDTO): Promise<TestimonialDTO> {
+    return await this.service.create(testimonialDTO);
   }
 
   @Get(':id')
   @UseGuards(AuthGuard('admin'))
-  async find(@Param('id') id: string): Promise<ProjectInterface> {
+  async find(@Param('id') id: string): Promise<TestimonialInterface> {
     return await this.service.find(id);
   }
 
   @Put()
   @UseGuards(AuthGuard('admin'))
-  @ApiConsumes('multipart/form-data')
-  @UseInterceptors(FileInterceptor('image'))
-  async update(@Body() projectDTO: ProjectDTO, @UploadedFile() image): Promise<ProjectDTO> {
-    return await this.service.update(projectDTO, image);
+  async update(@Body() testimonialDTO: TestimonialDTO): Promise<TestimonialDTO> {
+    return await this.service.update(testimonialDTO);
   }
 
   @Delete(':id')
@@ -58,20 +53,20 @@ export class ProjectController {
 }
 
 @ApiBearerAuth()
-@ApiTags('project')
-@Controller('project-header')
-export class ProjectHeaderController {
-  constructor(private readonly service: ProjectService) {}
+@ApiTags('testimonial')
+@Controller('testimonial-header')
+export class TestimonialHeaderController {
+  constructor(private readonly service: TestimonialService) {}
 
   @Get()
   @UseGuards(AuthGuard('admin'))
-  async find(): Promise<ProjectInterface> {
+  async find(): Promise<TestimonialInterface> {
     return await this.service.findHeader();
   }
 
   @Put()
   @UseGuards(AuthGuard('admin'))
-  async update(@Body() projectHeaderDTO: ProjectHeaderDTO): Promise<ProjectHeaderDTO> {
-    return await this.service.updateHeader(projectHeaderDTO);
+  async update(@Body() testimonialHeaderDTO: TestimonialHeaderDTO): Promise<TestimonialHeaderDTO> {
+    return await this.service.updateHeader(testimonialHeaderDTO);
   }
 }
