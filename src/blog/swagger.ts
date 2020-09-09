@@ -1,16 +1,16 @@
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { TestimonialModule } from 'src/testimonial/module';
+import { BlogModule } from 'src/blog/module';
 
-export const testimonialSwagger = app => {
+export const blogSwagger = app => {
   const options = new DocumentBuilder()
-    .setTitle('Testimonial Module')
-    .setDescription('Testimonial Module API')
+    .setTitle('Blog Module')
+    .setDescription('Blog Module API')
     .setVersion('1.0')
-    .addTag('testimonial')
+    .addTag('blog')
     .addBearerAuth()
     .build();
 
-  const document = SwaggerModule.createDocument(app, options, { include: [TestimonialModule] });
+  const document = SwaggerModule.createDocument(app, options, { include: [BlogModule] });
 
-  return { path: 'testimonial', document };
+  return { path: 'blog', document };
 };

@@ -6,25 +6,28 @@ import {
   Param,
   Put,
   Delete,
-  UseGuards,
+  UseGuards, UseInterceptors, UploadedFile,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
 
-import { TechnologyInterface } from 'src/technologie/interface';
-import { TechnologyDTO, TechnologyHeaderDTO } from 'src/technologie/dto';
-import { TechnologyService } from 'src/technologie/service';
+import { TechnologyInterface } from 'src/technology/interface';
+import { TechnologyDTO, TechnologyHeaderDTO } from 'src/technology/dto';
+import { TechnologyService } from 'src/technology/service';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiBearerAuth()
-@ApiTags('technologie')
-@Controller('technologie')
+@ApiTags('technology')
+@Controller('technology')
 export class TechnologyController {
   constructor(private readonly service: TechnologyService) {}
 
   @Post()
   @UseGuards(AuthGuard('admin'))
-  async create(@Body() technologieDTO: TechnologyDTO): Promise<TechnologyDTO> {
-    return await this.service.create(technologieDTO);
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(FileInterceptor('image'))
+  async create(@Body() technologyDTO: TechnologyDTO, @UploadedFile() image): Promise<TechnologyDTO> {
+    return await this.service.create(technologyDTO, image);
   }
 
   @Get(':id')
@@ -35,8 +38,10 @@ export class TechnologyController {
 
   @Put()
   @UseGuards(AuthGuard('admin'))
-  async update(@Body() technologieDTO: TechnologyDTO): Promise<TechnologyDTO> {
-    return await this.service.update(technologieDTO);
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(FileInterceptor('image'))
+  async update(@Body() technologyDTO: TechnologyDTO, @UploadedFile() image): Promise<TechnologyDTO> {
+    return await this.service.update(technologyDTO, image);
   }
 
   @Delete(':id')
@@ -53,8 +58,8 @@ export class TechnologyController {
 }
 
 @ApiBearerAuth()
-@ApiTags('technologie')
-@Controller('technologie-header')
+@ApiTags('technology')
+@Controller('technology-header')
 export class TechnologyHeaderController {
   constructor(private readonly service: TechnologyService) {}
 
@@ -66,7 +71,7 @@ export class TechnologyHeaderController {
 
   @Put()
   @UseGuards(AuthGuard('admin'))
-  async update(@Body() technologieHeaderDTO: TechnologyHeaderDTO): Promise<TechnologyHeaderDTO> {
-    return await this.service.updateHeader(technologieHeaderDTO);
+  async update(@Body() technologyHeaderDTO: TechnologyHeaderDTO): Promise<TechnologyHeaderDTO> {
+    return await this.service.updateHeader(technologyHeaderDTO);
   }
 }

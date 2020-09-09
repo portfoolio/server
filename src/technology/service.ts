@@ -1,54 +1,64 @@
 import { Inject, Injectable } from '@nestjs/common';
 import * as mongoose from 'mongoose';
 import { CrudInterface } from 'src/core/crud.interface';
-import { types } from 'src/technologie/types';
-import { TechnologyHeaderInterface, TechnologyInterface } from 'src/technologie/interface';
-import { technologieHeaderSchema, technologieSchema } from 'src/technologie/schema';
+import { types } from 'src/technology/types';
+import { TechnologyHeaderInterface, TechnologyInterface } from 'src/technology/interface';
+import { technologyHeaderSchema, technologySchema } from 'src/technology/schema';
+import { FILE, S3Service } from 'src/core/aws/service';
 
 @Injectable()
 export class TechnologyService implements CrudInterface {
   constructor(
-    @Inject(types.TECHNOLOGY_MODEL) private readonly technologieModel: mongoose.Model<TechnologyInterface>,
-    @Inject(types.TECHNOLOGY_HEADER_MODEL) private readonly technologieHeaderModel: mongoose.Model<TechnologyHeaderInterface>,
+    private readonly s3Service: S3Service,
+    @Inject(types.TECHNOLOGY_MODEL) private readonly technologyModel: mongoose.Model<TechnologyInterface>,
+    @Inject(types.TECHNOLOGY_HEADER_MODEL) private readonly technologyHeaderModel: mongoose.Model<TechnologyHeaderInterface>,
   ) {}
 
-  async create(data) {
-    return (new this.technologieModel(data)).save();
-  }
-
-  async update(data) {
-    let technologie = await this.technologieModel.findById(data.id);
-    for (let k of Object.keys(technologieSchema)) {
-      technologie[k] = data[k];
+  async create(data, image: FILE) {
+    if (image) {
+      data.image = await this.s3Service.upload(image);
     }
 
-    return technologie.save();
+    return (new this.technologyModel(data)).save();
+  }
+
+  async update(data, image: FILE) {
+    let technology = await this.technologyModel.findById(data.id);
+    for (let k of Object.keys(technologySchema)) {
+      technology[k] = data[k];
+    }
+
+    if (image) {
+      technology.image = await this.s3Service.upload(image);
+    }
+
+    return technology.save();
   }
 
   async delete(id) {
-    return await this.technologieModel.findByIdAndRemove(id);
+    return await this.technologyModel.findByIdAndRemove(id);
   }
 
   async find(id) {
-    return this.technologieModel.findById(id);
+    return this.technologyModel.findById(id);
   }
 
   async list() {
-    return this.technologieModel.find({});
+    return this.technologyModel.find({});
   }
 
   async findHeader() {
-    const header = await this.technologieHeaderModel.findOne();
+    const header = await this.technologyHeaderModel.findOne();
     if (!header) {
-      return (new this.technologieHeaderModel({})).save();
+      return (new this.technologyHeaderModel({})).save();
     }
 
     return header;
   }
 
   async updateHeader(data) {
-    let header = await this.technologieHeaderModel.findOne(data.id);
-    for (let k of Object.keys(technologieHeaderSchema)) {
+    let header = await this.technologyHeaderModel.findOne(data.id);
+    for (let k of Object.keys(technologyHeaderSchema)) {
       header[k] = data[k];
     }
 

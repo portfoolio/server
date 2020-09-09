@@ -1,17 +1,17 @@
 import * as mongoose from 'mongoose';
 import { types } from './types';
 import { types as coreTypes } from 'src/core/types';
-import { TestimonialHeaderSchema, TestimonialSchema } from 'src/testimonial/schema';
+import { BlogHeaderSchema, BlogSchema } from 'src/blog/schema';
 
-export const testimonialProvider = [
+export const blogProvider = [
   {
-    provide: types.TESTIMONIAL_MODEL,
-    useFactory: () => mongoose.model('Testimonial', TestimonialSchema, 'testimonial'),
+    provide: types.BLOG_MODEL,
+    useFactory: () => mongoose.model('Blog', BlogSchema, 'blog'),
     inject: [coreTypes.CONNECTION],
   },
   {
-    provide: types.TESTIMONIAL_HEADER_MODEL,
-    useFactory: () => mongoose.model('TestimonialHeader', TestimonialHeaderSchema, 'testimonialHeader'),
+    provide: types.BLOG_HEADER_MODEL,
+    useFactory: () => mongoose.model('BlogHeader', BlogHeaderSchema, 'blogHeader'),
     inject: [coreTypes.CONNECTION],
   },
 ];
