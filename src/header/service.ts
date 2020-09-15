@@ -23,6 +23,11 @@ export class HeaderService {
     }
 
     for (let k of Object.keys(headerSchema)) {
+      if (k === 'links') {
+        header.links = data[k];
+        continue;
+      }
+
       header[k] = data[k];
     }
 

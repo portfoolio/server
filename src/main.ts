@@ -25,6 +25,7 @@ import { TestimonialModule } from 'src/testimonial/module';
 import { TechnologyModule } from 'src/technology/module';
 import { BlogModule } from 'src/blog/module';
 import { SettingModule } from 'src/setting/module';
+import { ClientModule } from 'src/client/module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { SettingModule } from 'src/setting/module';
     TechnologyModule,
     BlogModule,
     SettingModule,
+    ClientModule,
   ]
 })
 
